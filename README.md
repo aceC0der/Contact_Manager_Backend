@@ -1,7 +1,3 @@
-Sure! Here's the full README content in Markdown format:
-
----
-
 # 📇 Contact Management Backend
 
 This is a simple backend API built using **Express.js** for managing contacts. It provides basic CRUD operations (Create, Read, Update, Delete) for managing contact data.
@@ -18,7 +14,6 @@ This is a simple backend API built using **Express.js** for managing contacts. I
 
 - Node.js  
 - Express.js  
-- MongoDB (Mongoose) *(optional, if you're using a database)*  
 - dotenv for environment variables  
 - nodemon for development  
 
@@ -32,14 +27,9 @@ npm install
 
 ## ⚙️ Configuration
 
-Create a `.env` file in the root directory and add the following:
-
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/contact-manager
 ```
-
-*(Skip `MONGODB_URI` if you're not using a DB yet.)*
 
 ## 🧪 Running the Server
 
