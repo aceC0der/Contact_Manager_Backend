@@ -17,6 +17,12 @@ const getContact = (req, res) => {
 //@access - public
 const createContact = (req, res) => {
     console.log("The request body is : \n", req.body);
+    const { name, email, phone } = req.body;
+    console.log(name, email, phone);
+    if (!name || !email || !phone) {
+        res.status(404);
+        throw new Error("All fields are mandatory !!!");
+    }
     res.status(200).json({ message: "create contacts" });
 };
 
@@ -34,10 +40,10 @@ const delContact = (req, res) => {
     res.status(200).json({ message: `delete contact for ${req.params.id}` });
 };
 
-module.exports = { 
+module.exports = {
     getContacts,
-    getContact, 
-    createContact, 
-    updateContact, 
+    getContact,
+    createContact,
+    updateContact,
     delContact
 };
