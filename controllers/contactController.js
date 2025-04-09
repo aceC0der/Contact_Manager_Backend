@@ -1,13 +1,15 @@
 // if a error is thrown in a async function
 // it passes the error in the next middlewire
 const asyncHandler = require("express-async-handler");                          
+const Contacts = require("../models/contactModel");
 
 
 //@desc - get all contacts
 //@routes - get /api/contacts
 //@access - public
 const getContacts = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: "Get all contacts" });
+    const contact = await Contacts.find();
+    res.status(200).json(contact);
 });
 
 //@desc - get a contact
@@ -28,7 +30,15 @@ const createContact = asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error("All fields are mandatory !!!");
     }
-    res.status(200).json({ message: "create contacts" });
+    // console.log("*****");
+    try {
+        const contact = await Contacts.create({name, email, phone});
+        res.status(201).json(contact);
+    } catch(err) {
+        console.log(err);
+        res.status(500);
+        throw new Error("Server Crashed!!!!!!!!!!!");
+    }
 });
 
 //@desc - update contact
