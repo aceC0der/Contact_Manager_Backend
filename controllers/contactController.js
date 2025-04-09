@@ -16,7 +16,12 @@ const getContacts = asyncHandler(async (req, res) => {
 //@routes - get /api/contacts
 //@access - public
 const getContact = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `get contact for ${req.params.id}` });
+    const contact = await Contacts.findById(req.params.id);
+    if(!contact){
+        res.status(404);
+        throw new Error("Contact Not Found!!!");
+    }
+    res.status(200).json(contact);
 });
 
 //@desc - create contact
@@ -37,7 +42,7 @@ const createContact = asyncHandler(async (req, res) => {
     } catch(err) {
         console.log(err);
         res.status(500);
-        throw new Error("Server Crashed!!!!!!!!!!!");
+        throw new Error("Server Error!!!!!!!!!!!");
     }
 });
 
